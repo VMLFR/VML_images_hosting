@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open Maps</title>
+    <script>
+        function openMaps() {
+            var latitude = '37.7749'; // replace with your latitude
+            var longitude = '-122.4194'; // replace with your longitude
+            var googleMapsUrl = 'https://www.google.com/maps?q=' + latitude + ',' + longitude;
+            var googleMapsAppUrl = 'comgooglemaps://?q=' + latitude + ',' + longitude;
+            var appleMapsUrl = 'maps://?q=' + latitude + ',' + longitude;
+            
+            if (/Android/i.test(navigator.userAgent)) {
+                window.location = googleMapsAppUrl;
+            } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.location = googleMapsAppUrl;
+                setTimeout(function() {
+                    window.location = appleMapsUrl;
+                }, 1000);
+            } else {
+                window.location = googleMapsUrl;
+            }
+        }
+    </script>
+</head>
+<body onload="openMaps()">
+</body>
+</html>
